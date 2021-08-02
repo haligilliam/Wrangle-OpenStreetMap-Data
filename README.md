@@ -38,13 +38,13 @@ pprint.pprint(tags)
  'way': 199637}
  ```
 
-I then wanted to further focus on Street Names and Zip Codes. Upon examination of a sample of the Seatacc area data, I came across some cases of the following issues: 
+I then wanted to further focus on Street Names and Zip Codes. Upon examination of a sample of the SeaTac area data, I came across some cases of the following issues: 
 
 * Issue 1: Inconsistent Street Names
 * Issue 2: Inconsistent zip codes
 
 ### Inconsistent Street Names
-To audit and clean the street names in this data set, I created an expected street type list, such as Street instead of St., and created a dictionary for all street types no in the expected street types dictionary. To correct any inconsistensies between some addresses displaying as St. and some dispalying as Street, I created a street_name_cleaning dictionary to change any abbreviations to the full words. The expected street type list also helped to clean up any street names that might have had mispellings. I used parts of the Udacity Nanodegree course module prsactice problems to craft the below auditing and cleaning. 
+To audit and clean the street names in this data set, I created an expected street type list, such as Street instead of St., and created a dictionary for all street types in the expected street types dictionary. To correct any inconsistensies between some addresses displaying as St. and some dispalying as Street, I created a street_name_cleaning dictionary to change any abbreviations to the full words. The expected street type list also helped to clean up any street names that might have had mispellings. I used parts of the Udacity Nanodegree course module practice problems to craft the below auditing and cleaning. 
 
 ```
 def audit_street_type(street_types, street_name):
