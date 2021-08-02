@@ -109,7 +109,7 @@ SELECT COUNT(*)FROM nodes;
 1996
 ```
 ### Max Speed Limits 
-Most speed limits seemed normal for the different areas of roads throughough the city. However, one did stand out at 8mph, which I assumed to be a typo as I only had 1 result.
+Most speed limits seemed normal for the different areas of roads throughout the city. However, one did stand out at 8mph, which I assumed to be a typo as I only had 1 result.
 ```
 with name_type AS (
 SELECT
