@@ -4,7 +4,7 @@
 ## Area of Map Selected 
 SeaTac, Washington 
 https://www.openstreetmap.org/relation/237380
-I have never been to SeaTac, and randomly chose this location for auditing, cleaning and analysis to see what interesting fact I could find out about the data!
+I have never been to SeaTac, and randomly chose this location for auditing, cleaning and analysis, to see what interesting facts I could find out about the data!
 
 ## Data Auditing
 I first took the downloaded OSM file and parsed with ElementTree to find the number of each type of element: 
