@@ -1,1 +1,12 @@
-#Wrangle OpenStreetMap Data
+# Wrangle OpenStreetMap Data
+
+##Area of Map Selected 
+Portland, Oregon 
+
+https://www.openstreetmap.org/relation/186579
+
+##Encountered Problem in the Selected Map Area
+Upon examination of the Portland area data, I came across the following issues in the data: 
+
+*Issue 1: Inconsistent Streen Names: St, St. Street.
+*Issue 2: Inconsistent zip codes: 5-digits versus 9 digits
