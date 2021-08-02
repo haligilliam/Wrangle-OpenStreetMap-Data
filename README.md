@@ -99,6 +99,7 @@ SELECT COUNT(*)FROM nodes;
 1996
 ```
 ### Max Speed Limits 
+Most speed limits seemed normal for the different areas of roads. However, one did stand out at 8mph, which I assumed to be a typo as I only had 1 result.
 ```
 with name_type AS (
 SELECT
@@ -123,4 +124,13 @@ SELECT  DISTINCT type FROM name_type
 40 mph
 45 mph
 60 mph
+```
+### Number of Unique Users
+```
+SELECT COUNT(DISTINCT(u.nodeid))
+FROM (SELECT nodeid FROM nodes UNION ALL
+SELECT wayid FROM ways) as u;
+```
+```
+2005
 ```
