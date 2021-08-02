@@ -147,9 +147,9 @@ SELECT wayid FROM ways) as u;
 2005
 ```
 ## Additional Ideas
-The easiest way to keep data clean and consistent is to either limit the number of users, or to set a mandtory upload standard for all update types. For the OpenStreetMaps data, I would look into having a submission procedure where users have to follow one standard when uploading, or editing data. For example, when adding or updating street names, all users must type out the full words of "Street" or "Boulevard", and if the format is not followed then the entry would be rejected. With a lot of users uploading, and no standardization protocols in place. 
+The easiest way to keep data clean and consistent is to either limit the number of users, or to set a mandatory upload standard for all update types. For the OpenStreetMaps data, I would look into having a submission procedure where users have to follow one standard when uploading, or editing data. For example, when adding or updating street names, all users must type out the full words of "Street" or "Boulevard", and if the format is not followed then the entry would be rejected. With a lot of users uploading, and no standardization protocols in place, the chances for inconsistent data are high.  
 
-In the results below we can see the results for the waytag name of "name"  These results showed a mixture of street names, and what appeared to be the names of the businesses belonging to that street name. 
+Below we can see the results for the waytag name of "name"  These results showed a mixture of street names, and what appeared to be the names of the businesses belonging to that street name. 
 
 ```
 SELECT tagvalue FROM waytags
@@ -331,4 +331,4 @@ West Willis Street
 ```
 
 # Conclusion 
-The data for SeaTac, Washington did not seem to have a ton of errors, but there are some areas that needed some further auditing and cleaning, but I believe that for the purposes of the project, it has been well cleaned. It was interesting to further analyze that the waytag values for the waytag name of "name" held both street addresses, and names of places. With a better system in place for accepting user entries, I beleive that the data for both SeaTac, Washington and global would increase in cleanliness!
+The data for SeaTac, Washington did not seem to have a ton of errors, but there are some areas that needed some further auditing and cleaning. However, I believe that for the purposes of the project, it has been well cleaned. It was interesting to further analyze that the waytag values for the waytag name of "name" held both street addresses, and names of places. With a better system in place for accepting user entries, I beleive that the data for both SeaTac, Washington and global would increase in cleanliness!
