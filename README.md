@@ -86,3 +86,41 @@ To clean for a consistent digit format, I looked for any zip code that had 9 dig
 elif len(name) == 10: #If the zip is not 5-digit, take the left-most five digits
         return name[0:5]
 ```
+## Overview of the Data
+### Number of Nodes: 
+```
+SELECT COUNT(*)FROM nodes;
+```
+```
+1349314
+```
+### Number of Ways: 
+```
+1996
+```
+### Max Speed Limits 
+```
+with name_type AS (
+SELECT
+wtg.TagValue AS name,
+wts.TagValue AS type
+FROM
+ways way
+INNER JOIN waytags wts ON way.wayid = wts.wayid AND wts.TagName = 'maxspeed'
+LEFT JOIN waytags wtg ON way.wayid = wtg.wayid AND wtg.TagName = 'Name'
+
+
+)
+SELECT  DISTINCT type FROM name_type
+```
+```
+5 mph
+8 mph
+10 mph
+15 mph
+20 mph
+30 mph
+40 mph
+45 mph
+60 mph
+```
