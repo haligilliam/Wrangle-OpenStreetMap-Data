@@ -38,6 +38,7 @@ pprint.pprint(tags)
  'way': 199637}
  ```
 
+## Problems encountered in map
 I then wanted to further focus on Street Names and Zip Codes. Upon examination of a sample of the SeaTac area data, I came across some cases of the following issues: 
 
 * Issue 1: Inconsistent Street Names
@@ -146,7 +147,7 @@ SELECT wayid FROM ways) as u;
 ```
 2005
 ```
-## Additional Ideas
+## Other ideas about the dataset
 The easiest way to keep data clean and consistent is to either limit the number of users, or to set a mandatory upload standard for all update types. For the OpenStreetMaps data, I would look into having a submission procedure where users have to follow one standard when uploading, or editing data. For example, when adding or updating street names, all users must type out the full words of "Street" or "Boulevard", and if the format is not followed then the entry would be rejected. With a lot of users uploading, and no standardization protocols in place, the chances for inconsistent data are high.  
 
 Below we can see the results for the waytag name of "name"  These results showed a mixture of street names, and what appeared to be the names of the businesses belonging to that street name. 
