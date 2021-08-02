@@ -72,3 +72,17 @@ street_name_cleanup = {'Ave': 'Avenue', 'AVE': 'Avenue', 'Ave.': 'Avenue',
  'Wy': 'Way', 'Wy.': 'Way'}
  ```
  
+### Inconsistent Zip Codes
+While looking at zip code data, I noticed that some zip codes seem to belong outside of the SeaTac lis to city zip codes. I also wanted to ensure that the zip codes followed a consistent 5-digit format, instead of a mix of the 5-digit and the full 9-digit postal zip code. To clean this for the first part, I created a list of expected zip codes of zip codes belonging to SeaTac. 
+```
+expected =  ['98148',
+'98158',
+'98168',
+'98188',
+'98198']
+```
+To clean for a consistent digit format, I looked for any zip code that had 9 digits, and only returned the 5 left-most digits.
+```
+elif len(name) == 10: #If the zip is not 5-digit, take the left-most five digits
+        return name[0:5]
+```
