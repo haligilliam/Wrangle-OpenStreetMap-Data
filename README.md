@@ -46,3 +46,29 @@ I then wanted to further focus on Street Names and Zip Codes. Upon examination o
 ### Inconsistent Street Names
 To audit and clean the street names in this data set, I created an expected street type list, such as Street instead of St., and created a dictionary for all street types no in the expected street types dictionary. To correct any inconsistensies between some addresses displaying as St. and some dispalying as Street, I created a street_name_cleaning dictionary to change any abbreviations to the full words: 
 ```
+street_name_cleanup = {'Ave': 'Avenue', 'AVE': 'Avenue', 'Ave.': 'Avenue',
+ 'Blvd': 'Boulevard', 'Blvd.': 'Boulevard',
+ 'Cir': 'Circle', 'Cir.': 'Circle',
+ 'Crt': 'Court', 'Crt.': 'Court',
+ 'Ct': 'Court', 'Ct.': 'Court',
+ 'Dr': 'Drive', 'Dr.': 'Drive',
+ 'E.': 'East',
+ 'Fwy': 'Freeway', 'Fwy.': 'Freeway',
+ 'Hwy': 'Highway', 'Hwy.': 'Highway',
+ 'Ln': 'Lane', 'Ln.': 'Lane',
+ 'Mt': 'Mountain', 'Mt.': 'Mountain',
+ 'N.': 'North',
+ 'Pkwy': 'Parkway', 'Pkwy.': 'Parkway',
+ 'Pl': 'Place', 'Pl.': 'Place',
+ 'Pt': 'Point', 'Pt.': 'Point',
+ 'Rd': 'Road', 'Rd.': 'Road',
+ 'Rte': 'Route', 'Rte.': 'Route',
+ 'S.': 'South',
+ 'Sq': 'Square', 'Sq.': 'Square',
+ 'St': 'Street', 'St.': 'Street',
+ 'Ter': 'Terrace', 'Ter.': 'Terrace',
+ 'Tr': 'Trail', 'Tr.': 'Trail',
+ 'W.': 'West',
+ 'Wy': 'Way', 'Wy.': 'Way'}
+ ```
+ 
