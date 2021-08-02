@@ -1,0 +1,23 @@
+expected =  ['98148',
+'98158',
+'98168',
+'98188',
+'98198']
+
+#initial dictionary of zip codes
+zip_codes = {}
+
+
+#Create list of keys
+zip_code_keys = []
+for k,v in zip_codes.items():
+    zip_code_keys.append(k)
+
+def update_zip(name):
+    if name in zip_code_keys: #If the bad key is in the mapping zip_codes dict, then perform a substitute
+        good = zip_codes[name]
+        return good
+    elif len(name) == 10: #If the zip is not 5-digit, take the left-most five digits
+        return name[0:5]
+    else:
+        return name
