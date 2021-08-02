@@ -44,4 +44,5 @@ I then wanted to further focus on Street Names and Zip Codes. Upon examination o
 * Issue 2: Inconsistent zip codes
 
 ### Inconsistent Street Names
-To audit and clean the street names in this data set, I created an expected street type list, such as Street instead of St., and created a dictionary for all street types no in the expected street types dictionary. To correct any inconsistensies between some addresses displaying as St. and some dispalying as Street, I created a street_name_cleaning dictionary to list 
+To audit and clean the street names in this data set, I created an expected street type list, such as Street instead of St., and created a dictionary for all street types no in the expected street types dictionary. To correct any inconsistensies between some addresses displaying as St. and some dispalying as Street, I created a street_name_cleaning dictionary to change any abbreviations to the full words: 
+```
