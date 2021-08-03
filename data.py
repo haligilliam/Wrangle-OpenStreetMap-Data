@@ -102,6 +102,40 @@ def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIE
 # ================================================== #
 #               Helper Functions                     #
 # ================================================== #
+#Function for street names
+def update_name(name, street_name_cleanup):
+
+    m = street_type_re.search(name)
+    if m and  m.group() in street_name_cleanup:
+        name = name.replace(m.group(), street_name_cleanup[m.group()])
+    
+ 
+    return name
+    
+# Function for zip cpdes
+def update_zip(name):
+    if name in zip_code_keys: #If the bad key is in the mapping zip_codes dict, then perform a substitute
+        good = zip_codes[name]
+        return good
+    elif len(name) == 10: #If the zip is not 5-digit, take the left-most five digits
+        return name[0:5]
+    else:
+        return name
+    
+
+
+def get_element(osm_file, tags=('node', 'way', 'relation')):
+    """Yield element if it is the right type of tag"""
+
+    context = ET.iterparse(osm_file, events=('start', 'end'))
+    _, root = next(context)
+    for event, elem in context:
+        if event == 'end' and elem.tag in tags:
+            yield elem
+            root.clear()
+
+
+
 def get_element(osm_file, tags=('node', 'way', 'relation')):
     """Yield element if it is the right type of tag"""
 
