@@ -32,7 +32,11 @@ WAY_NODES_FIELDS = ['id', 'node_id', 'position']
 def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIELDS,
                   problem_chars=PROBLEMCHARS, default_tag_type='regular'):
     """Clean and shape node or way XML element to Python dict"""
-
+    #Update the street names and postal codes
+   if is_street_name(tag):
+        tag_attribs['value'] = update_street_name(tag.attrib['v'], mapping, mapping2) 
+   elif is_postal_code(tag):
+        tag_attribs['value'] = update_postal_code(tag.attrib['v'])
     node_attribs = {}
     way_attribs = {}
     way_nodes = []
