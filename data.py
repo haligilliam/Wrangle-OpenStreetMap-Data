@@ -72,7 +72,7 @@ def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIE
         for child in element:
             way_tag = {}
             way_node = {}
-            
+           
             if child.tag == 'tag':
                 if LOWER_COLON.match(child.attrib['k']):
                     way_tag['type'] = child.attrib['k'].split(':',1)[0]
