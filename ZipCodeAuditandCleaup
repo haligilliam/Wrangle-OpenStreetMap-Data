@@ -4,6 +4,9 @@ expected =  ['98148',
 '98188',
 '98198']
 
+def is_postal_code(elem):
+    return (elem.attrib['k'] == "addr:postcode")
+
 #initial dictionary of zip codes
 zip_codes = {}
 
