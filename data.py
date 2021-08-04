@@ -48,27 +48,36 @@ def tag_dict(element, tag):
 def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIELDS,
                   problem_chars=PROBLEMCHARS, default_tag_type='regular'):
     """Clean and shape node or way XML element to Python dict"""
-
+#Take element and child tag and creates dictionary with neccessary keys
+    def tag_dict(element, tag):
+    tag_attribs = {}                           
+    tag_attribs['id'] = element.attrib['id']
+    
+    if is_street_name(tag):
+        tag_attribs['value'] = update_street_name(tag.attrib['v'], mapping, mapping2)  
+    elif is_postal_code(tag):
+        tag_attribs['value'] = update_postal_code(tag.attrib['v'])              # update the street names and update the post codes
+                                                                                
+    else:
+        tag_attribs['value'] = tag.attrib['v']  
+ 
     node_attribs = {}
     way_attribs = {}
     way_nodes = []
     tags = []  # Handle secondary tags the same way for both node and way elements
 
-
-        
-        
+  
     if element.tag == 'node':
         for attrib in element.attrib:
             if attrib in NODE_FIELDS:
                 node_attribs[attrib] = element.attrib[attrib]
-        
         for child in element:
             node_tag = {}
             if LOWER_COLON.match(child.attrib['k']):
                 node_tag['type'] = child.attrib['k'].split(':',1)[0]
                 node_tag['key'] = child.attrib['k'].split(':',1)[1]
                 node_tag['id'] = element.attrib['id']
-                node_tag['value'] = update_name(child.attrib['v'])
+                node_tag['value'] = tag_dict(child.attrib['v'],mapping)
                 tags.append(node_tag)
             elif PROBLEMCHARS.match(child.attrib['k']):
                 continue
@@ -78,14 +87,12 @@ def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIE
                 node_tag['id'] = element.attrib['id']
                 node_tag['value'] = child.attrib['v']
                 tags.append(node_tag)
-        
         return {'node': node_attribs, 'node_tags': tags}
         
     elif element.tag == 'way':
         for attrib in element.attrib:
             if attrib in WAY_FIELDS:
                 way_attribs[attrib] = element.attrib[attrib]
-        
         position = 0
         for child in element:
             way_tag = {}
@@ -96,7 +103,7 @@ def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIE
                     way_tag['type'] = child.attrib['k'].split(':',1)[0]
                     way_tag['key'] = child.attrib['k'].split(':',1)[1]
                     way_tag['id'] = element.attrib['id']
-                    node_tag['value'] = update_name(child.attrib['v'])
+                    node_tag['value'] = tag_dict(child.attrib['v'])
                     tags.append(way_tag)
                 elif PROBLEMCHARS.match(child.attrib['k']):
                     continue
@@ -115,7 +122,6 @@ def shape_element(element, node_attr_fields=NODE_FIELDS, way_attr_fields=WAY_FIE
                 way_nodes.append(way_node)
         
         return {'way': way_attribs, 'way_nodes': way_nodes, 'way_tags': tags}
-
 
 # ================================================== #
 #               Helper Functions                     #
