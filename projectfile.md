@@ -123,8 +123,11 @@ elif len(name) == 10: #If the zip is not 5-digit, take the left-most five digits
         return name[0:5]
 ```
 ## Overview of the Data
+
 ### Size of File
 The SeaTac Washingting OSM File is 319 MB
+
+
 Here, I have included the queries performed on the dataset using Microsoft SQL Server Management Studio, and any interesting things I found.
 
 ### Number of Unique Users
