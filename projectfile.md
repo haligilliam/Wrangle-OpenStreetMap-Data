@@ -44,8 +44,18 @@ I then wanted to further focus on Street Names and Zip Codes. Upon examination o
 * Issue 1: Inconsistent Street Names
 * Issue 2: Inconsistent zip codes
 
-### Inconsistent Street Names
+###  Inconsistent Street Names
+There were some inconsitencies in the way that street names were written in the file. Below we can see some examples of abbrevaited street names, where others had the full spelling. I decided to clean any of the abbreviated versions into the full spelling of the street name. 
+
+S 240th St would update to South 240th Street.
+124th Ave would update to 124th Avenue. 
+Marine View Dr would update to Marine View Drive.
+Andover Park W would update to Andover Park West.
+Benson Rd S would update to Benson Road South.
+
 To audit and clean the street names in this data set, I created an expected street type list, such as Street instead of St., and created a dictionary for all street types in the expected street types dictionary. To correct any inconsistensies between some addresses displaying as St. and some dispalying as Street, I created a street_name_cleaning dictionary to change any abbreviations to the full words. The expected street type list also helped to clean up any street names that might have had mispellings. I used parts of the Udacity Nanodegree course module practice problems to craft the below auditing and cleaning. 
+
+
 
 ```
 def audit_street_type(street_types, street_name):
@@ -85,7 +95,8 @@ street_name_cleanup = {'Ave': 'Avenue', 'AVE': 'Avenue', 'Ave.': 'Avenue',
 ### Inconsistent Zip Codes
 While looking at zip code data, I noticed that some zip codes seem to belong outside of the SeaTac list for city zip codes. I also wanted to ensure that the zip codes followed a consistent 5-digit format, instead of a mix of the 5-digit and the full 9-digit postal zip code. To clean this for the first part, I created a list of expected zip codes of zip codes belonging to SeaTac. 
 ```
-expected =  ['98148',
+expected =  ['98032'
+'98148',
 '98158',
 '98168',
 '98188',
