@@ -2,50 +2,19 @@
 
 
 ## Area of Map Selected 
-SeaTac, Washington 
+SeaTac, Washington, United States
 https://www.openstreetmap.org/relation/237380
-I have never been to SeaTac, and randomly chose this location for auditing, cleaning and analysis, to see what interesting facts I could find out about the data!
+I have never been to SeaTac, and randomly chose this location for auditing, cleaning and analysis, to see what interesting facts I could find out about the data! I chose SeaTac specifically because I had never heard of the city before and I hoped to learn a little more about it through this data wrangling process. 
 
-## Data Auditing
-I first took the downloaded OSM file and parsed with ElementTree to find the number of each type of element: 
-
-```
-import xml.etree.cElementTree as ET
-import pprint
-
-def count_tags(filename):
-        tags = {}
-        for k, v in ET.iterparse(filename):
-            if v.tag in tags:
-                tags[v.tag] +=1
-            else:
-                tags[v.tag] =1
-        return tags
-
-tags = count_tags('seatac_wa[1].osm')
-pprint.pprint(tags)
-```
-```
-{'bounds': 1,
- 'member': 44856,
- 'meta': 1,
- 'nd': 1578182,
- 'node': 1349314,
- 'note': 1,
- 'osm': 1,
- 'relation': 1675,
- 'tag': 929276,
- 'way': 199637}
- ```
 
 ## Problems encountered in map
-I then wanted to further focus on Street Names and Zip Codes. Upon examination of a sample of the SeaTac area data, I came across some cases of the following issues: 
+While auditing the data there were two areas that caught my attention the most. 
 
 * Issue 1: Inconsistent Street Names
-* Issue 2: Inconsistent zip codes
+* Issue 2: Inconsistent zip codes and zip codes that did not belong to SeaTac Washington.
 
 ###  Inconsistent Street Names
-There were some inconsitencies in the way that street names were written in the file. Below we can see some examples of abbrevaited street names, where others had the full spelling. I decided to clean any of the abbreviated versions into the full spelling of the street name. 
+There were some inconsitencies in the way that street names were written in the data. Below we can see some examples of abbrevaited street names, where others had the full spelling. While neither of these options are an incorrect way to display a street name, it is best to clean and update to reflect one formatting standard. This helps with data consistency and allows for easier and more accurate analysis.  
 
 * S 240th St would update to South 240th Street.
 * 124th Ave would update to 124th Avenue. 
@@ -53,18 +22,9 @@ There were some inconsitencies in the way that street names were written in the 
 * Andover Park W would update to Andover Park West.
 * Benson Rd S would update to Benson Road South.
 
-To audit and clean the street names in this data set, I created an expected street type list, such as Street instead of St., and created a dictionary for all street types in the expected street types dictionary. To correct any inconsistensies between some addresses displaying as St. and some dispalying as Street, I created a street_name_cleaning dictionary to change any abbreviations to the full words. The expected street type list also helped to clean up any street names that might have had mispellings. I used parts of the Udacity Nanodegree course module practice problems to craft the below auditing and cleaning. 
+To audit and clean the street names in this data set, I created an expected street type list, such as Street instead of St., and created a dictionary for all street types in the expected street types dictionary. To correct any inconsistensies between some addresses displaying as St. and some dispalying as Street, I created a street_name_cleaning dictionary to change any abbreviations to the full spellings. I used parts of the Udacity Nanodegree course module practice problems to craft the below auditing and cleaning. 
 
 
-
-```
-def audit_street_type(street_types, street_name):
-    m = street_type_re.search(street_name)
-    if m:
-        street_type = m.group()
-        if street_type not in expected:
-            street_types[street_type].add(street_name)
-```
 ```
 street_name_cleanup = {'Ave': 'Avenue', 'AVE': 'Avenue', 'Ave.': 'Avenue',
  'Blvd': 'Boulevard', 'Blvd.': 'Boulevard',
@@ -118,10 +78,7 @@ I also wanted to make sure that the zip code format was consistent, and only dis
 * 98148-2029 will update to 98148
 
 To clean for a consistent digit format, I looked for any zip code that had 9 digits, and only returned the 5 left-most digits.
-```
-elif len(name) == 10: #If the zip is not 5-digit, take the left-most five digits
-        return name[0:5]
-```
+
 ## Overview of the Data
 
 ### Size of File
@@ -191,15 +148,8 @@ The easiest way to keep data clean and consistent is to either limit the number 
 
 Below we can see the results for the waytag name of "name"  These results showed a mixture of street names, and what appeared to be the names of the businesses belonging to that street name. 
 
-```
-SELECT tagvalue FROM waytags
-WHERE 1=1
-AND tagname = 'name'
-ORDER BY tagvalue
-```
 
 ```
-
 72nd Avenue South
 7th Place Southwest
 84th Avenue South
